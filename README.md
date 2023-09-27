@@ -6,19 +6,17 @@ Funcionalidades principais
 O objetivo principal deste projeto é criar uma implementação flexível e eficiente de uma Árvore Binária de Busca em Java, com as seguintes funcionalidades:
 
 1- Inserção de elementos na árvore.
-![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/54cfbaaf-9472-471e-a34b-d7117dff8e16)
-
+![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/655a2257-c4cd-4c5b-870d-2f6ce4226440)
 
 2- Remoção de elementos da árvore.
 ![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/a1c351f2-b29e-4e2e-8dc2-e4768ac53dc7)
 
-
 3- Pesquisa por elementos na árvore.
 ![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/d2b91e1b-da99-458b-b688-bca8e96d0e00)
 
-
 4- Imprime os valores no formato de árvore no console
-![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/9ad8e83f-692b-4a9f-a3c5-b19636081839)
+![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/0b82fa4b-4713-4c51-ae93-df3c6c269a6f)
+
 
 
 
