@@ -1,53 +1,52 @@
-public class Arvore<TIPO extends Comparable> {
-    private Elemento<TIPO> raiz = null; // Cria um elemento raiz que inicialmente é nulo
+public class Arvore<TIPO extends Comparable<TIPO>> {
+    private Elemento<TIPO> raiz = null;
 
     public void adicionar(TIPO valor) {
-        Elemento<TIPO> novoElemento = new Elemento(valor); // Método para adicionar um valor à árvore
-        if (this.raiz == null) { //verifica se a arvore esta vazia
-            this.raiz = novoElemento; // Se estiver vazia, o novo elemento se torna a raiz
+        Elemento<TIPO> novoElemento = new Elemento<>(valor);
+        if (this.raiz == null) {
+            this.raiz = novoElemento;
         } else {
-            Elemento<TIPO> atual = this.raiz; // Inicia a busca a partir da raiz
+            Elemento<TIPO> atual = this.raiz;
 
-            while(true) {  // Inicia um loop para encontrar a posição correta para inserir o novo elemento
-                int comparacao = valor.compareTo(atual.getValor()); // Compara o valor com o valor atual do elemento
-                if (comparacao == 0) {  // Se forem iguais, o valor já existe na árvore, então saímos do loop
+            while (true) {
+                int comparacao = valor.compareTo(atual.getValor());
+                if (comparacao == 0) {
                     break;
                 }
 
-                if (comparacao < 0) { // Se o valor for menor que o valor atual
-                    if (atual.getEsquerda() == null) { // Se não houver elemento à esquerda, insira o novo elemento aqui
+                if (comparacao < 0) {
+                    if (atual.getEsquerda() == null) {
                         atual.setEsquerda(novoElemento);
                         break;
                     }
 
-                    atual = atual.getEsquerda();  // Caso contrário, continue a busca na subárvore esquerda
-                } else { // Se o valor for maior que o valor atual
-                    if (atual.getDireita() == null) { // Se não houver elemento à direita, insira o novo elemento aqui
+                    atual = atual.getEsquerda();
+                } else {
+                    if (atual.getDireita() == null) {
                         atual.setDireita(novoElemento);
                         break;
                     }
 
-                    atual = atual.getDireita(); // Caso contrário, continue a busca na subárvore direita
+                    atual = atual.getDireita();
                 }
             }
         }
-
     }
 
     public boolean buscar(TIPO valor) {
-        return this.buscarRecursivo(this.raiz, valor); // Chama o método de busca recursiva a partir da raiz
+        return this.buscarRecursivo(this.raiz, valor);
     }
 
-    private boolean buscarRecursivo(Elemento<TIPO> elemento, TIPO valor) { // Método de busca recursiva
-        if (elemento == null) { // Se o elemento atual for nulo, o valor não foi encontrado
+    private boolean buscarRecursivo(Elemento<TIPO> elemento, TIPO valor) {
+        if (elemento == null) {
             return false;
         } else {
-            int comparacao = valor.compareTo(elemento.getValor()); // Compara o valor com o valor atual do elemento
-            if (comparacao == 0) { // Se forem iguais, o valor foi encontrado
+            int comparacao = valor.compareTo(elemento.getValor());
+            if (comparacao == 0) {
                 return true;
             } else {
-                return comparacao < 0 ? this.buscarRecursivo(elemento.getEsquerda(), valor) : this.buscarRecursivo(elemento.getDireita(), valor);
-                // Se o valor for menor, continue a busca na subárvore esquerda, caso contrário, na subárvore direita
+                return comparacao < 0 ? this.buscarRecursivo(elemento.getEsquerda(), valor)
+                        : this.buscarRecursivo(elemento.getDireita(), valor);
             }
         }
     }
@@ -57,17 +56,16 @@ public class Arvore<TIPO extends Comparable> {
     }
 
     private void imprimirEmOrdemRecursivo(Elemento<TIPO> elemento, int nivel) {
-        if (elemento != null) { // Se o elemento atual não for nulo
+        if (elemento != null) {
             this.imprimirEmOrdemRecursivo(elemento.getDireita(), nivel + 1);
 
-            for(int i = 0; i < nivel; ++i) {  // Imprime espaços para formatar a saída
+            for (int i = 0; i < nivel; ++i) {
                 System.out.print("   ");
             }
 
-            System.out.println(elemento.getValor()); // Imprime o valor do elemento atual
-            this.imprimirEmOrdemRecursivo(elemento.getEsquerda(), nivel + 1); // Imprime a subárvore esquerda
+            System.out.println(elemento.getValor());
+            this.imprimirEmOrdemRecursivo(elemento.getEsquerda(), nivel + 1);
         }
-
     }
 
     public void remover(TIPO valor) {
@@ -75,26 +73,26 @@ public class Arvore<TIPO extends Comparable> {
     }
 
     private Elemento<TIPO> removerRecursivo(Elemento<TIPO> elemento, TIPO valor) {
-        if (elemento == null) { // Se o elemento atual for nulo, o valor não foi encontrado
+        if (elemento == null) {
             return elemento;
         } else {
-            int comparacao = valor.compareTo(elemento.getValor()); // Compara o valor com o valor atual do elemento
-            if (comparacao < 0) { // Se o valor for menor, continue a busca na subárvore esquerda
+            int comparacao = valor.compareTo(elemento.getValor());
+            if (comparacao < 0) {
                 elemento.setEsquerda(this.removerRecursivo(elemento.getEsquerda(), valor));
-            } else if (comparacao > 0) { // Se o valor for maior, continue a busca na subárvore direita
+            } else if (comparacao > 0) {
                 elemento.setDireita(this.removerRecursivo(elemento.getDireita(), valor));
             } else {
-                if (elemento.getEsquerda() == null) {  // Se não houver subárvore esquerda, retorne a subárvore direita
+                if (elemento.getEsquerda() == null && elemento.getDireita() == null) {
+                    return null;
+                } else if (elemento.getEsquerda() == null) {
                     return elemento.getDireita();
-                }
-
-                if (elemento.getDireita() == null) { // Se não houver subárvore direita, retorne a subárvore esquerd
+                } else if (elemento.getDireita() == null) {
                     return elemento.getEsquerda();
+                } else {
+                    Elemento<TIPO> minimoDireita = this.encontrarMinimo(elemento.getDireita());
+                    elemento.setValor(minimoDireita.getValor());
+                    elemento.setDireita(this.removerRecursivo(elemento.getDireita(), minimoDireita.getValor()));
                 }
-
-                Elemento<TIPO> minimoDireita = this.encontrarMinimo(elemento.getDireita());
-                elemento.setDireita(this.removerRecursivo(elemento.getDireita(), (TIPO) minimoDireita.getValor()));
-                // Substitui o elemento atual pelo menor elemento da subárvore direita
             }
 
             return elemento;
@@ -102,7 +100,7 @@ public class Arvore<TIPO extends Comparable> {
     }
 
     private Elemento<TIPO> encontrarMinimo(Elemento<TIPO> elemento) {
-        while(elemento.getEsquerda() != null) {  // Percorre a subárvore até encontrar o elemento mais à esquerda
+        while (elemento.getEsquerda() != null) {
             elemento = elemento.getEsquerda();
         }
 

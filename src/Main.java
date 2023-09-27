@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public Main() {
     }
-
+//10, 20, 21 , 8, 9, 7
     public static void main(String[] args) {
         Arvore<Integer> arvore = new Arvore(); // Cria uma instância da classe Arvore para armazenar números inteiros
         Scanner scanner = new Scanner(System.in);
