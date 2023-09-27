@@ -9,10 +9,10 @@ O objetivo principal deste projeto é criar uma implementação flexível e efic
 ![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/655a2257-c4cd-4c5b-870d-2f6ce4226440)
 
 2- Remoção de elementos da árvore.
-![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/a1c351f2-b29e-4e2e-8dc2-e4768ac53dc7)
+![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/0bb3aae9-ddcc-4f7b-83de-d7aea092158e)
 
 3- Pesquisa por elementos na árvore.
-![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/d2b91e1b-da99-458b-b688-bca8e96d0e00)
+![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/5589671b-de4b-4cd0-bbd3-83efe008dfa9)
 
 4- Imprime os valores no formato de árvore no console
 ![image](https://github.com/CauaBrito01/ArvoreBinariaBusca/assets/102918321/0b82fa4b-4713-4c51-ae93-df3c6c269a6f)
